@@ -13,7 +13,7 @@ import PokemonDetailsWithName from './pokemonDetailsWithName'
 
 import PokemonCard from '@/Components/PokemonCard'
 import NewsPaper from '@/Components/NewsPaper'
-// import bgImageDesign from './Media-Asset/Background.png'
+
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,7 +22,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home({data}) {
-  // console.log(data.data.pokemons?.results);
+  console.log(data.data.pokemons?.results);
 
   const router = useRouter()
 
@@ -47,7 +47,7 @@ export default function Home({data}) {
           {/* contents  */}
           <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-y-10 gap-x-20 pt-10'>
             {
-              data?.data?.pokemons?.results?.map((poke,idx) => <PokemonCard key={idx} poke={poke} ></PokemonCard>)
+              data?.data?.pokemons?.results?.map((poke,idx) => <PokemonCard key={idx} poke={poke} idx={idx} ></PokemonCard>)
             }
           </div>
         </div>
@@ -64,7 +64,7 @@ export default function Home({data}) {
 
 
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   const gqlQuery = `query pokemons($limit: Int, $offset: Int) {
     pokemons(limit: $limit, offset: $offset) {
       count
@@ -103,3 +103,5 @@ export async function getStaticProps() {
     },
   };
 }
+
+

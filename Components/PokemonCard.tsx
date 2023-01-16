@@ -1,7 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
-const PokemonCard = ({ poke}) => {
-
+const PokemonCard = ({ poke, idx}) => {
+const pokemonID= ('000' + (idx+1)).slice(-3)
     
     const { url,
         name,
@@ -11,10 +12,11 @@ const PokemonCard = ({ poke}) => {
     
 
     return (
-        <div className="">
+        <Link href={`/pokemon/${name}`}  className="">
             {/* card design  */}
             <div className="bg-white hover:bg-blue-700  p-2 rounded-br-[55px] text-gray-700 hover:text-white">
                 <div className="bg-gray-200">
+                    <p className="text-xs absolute mt-2 ml-2 font-bold text-gray-700">#{pokemonID}</p>
                     <div>
                         <img className="w-36 h-40 mx-auto" src={image} alt={name} />
                     </div>
@@ -34,7 +36,7 @@ const PokemonCard = ({ poke}) => {
                 </div>
              </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
