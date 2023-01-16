@@ -2,11 +2,25 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import Logo from '@/Components/Logo'
+import { useRouter } from 'next/router'
+
+
+import { ApolloProvider } from '@apollo/client';
+import ApolloClient from '@apollo/client';
+
+import { AppProps } from 'next/app'
+import PokemonCard from '@/Components/PokemonCard'
 // import bgImageDesign from './Media-Asset/Background.png'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({data}) {
+  console.log(data.data.pokemons?.results);
+
+  const router = useRouter()
+
+
 
   return (
     <>
@@ -21,15 +35,61 @@ export default function Home() {
         {/* background texture  */}
         <div className='h-screen px-24' style={{ backgroundImage: `url(/Media-Asset/Texture.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
           {/* logo  */}
-          <div className='flex justify-center items-center h-44'>
-          <Image src="/Media-Asset/Logo.png" alt="my image" width={250} height={250}/>
-          </div>
-      
-          <div>
+          <Logo></Logo>
 
+          {/* contents  */}
+          <div>
+            {
+              data?.data?.pokemons?.results?.map(poke => <PokemonCard poke={poke} ></PokemonCard>)
+            }
           </div>
         </div>
       </div>
     </>
   )
+}
+
+
+
+
+export async function getServerSideProps(context) {
+  const gqlQuery = `query pokemons($limit: Int, $offset: Int) {
+    pokemons(limit: $limit, offset: $offset) {
+      count
+      next
+      previous
+      status
+      message
+      results {
+        url
+        name
+        image
+        
+      }
+      
+    }
+  }`;
+
+  const gqlVariables = {
+    limit: 10,
+    offset: 0,
+  };
+  
+  const res = await fetch('https://graphql-pokeapi.graphcdn.app/', {
+    credentials: 'omit',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: gqlQuery,
+      variables: gqlVariables,
+    }),
+    method: 'POST',
+  });
+
+  const data = await res.json();
+
+  return {
+    props: {
+      data,
+    },
+  }
 }
