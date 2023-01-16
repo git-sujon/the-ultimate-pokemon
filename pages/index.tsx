@@ -31,16 +31,16 @@ export default function Home({data}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* background shape */}
-      <div className='h-screen w-[1366px]' style={{ backgroundImage: `url(/Media-Asset/Background.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+      <div className='pb-32' style={{ backgroundImage: `url(/Media-Asset/Background.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
         {/* background texture  */}
         <div className='h-screen px-24' style={{ backgroundImage: `url(/Media-Asset/Texture.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
           {/* logo  */}
           <Logo></Logo>
 
           {/* contents  */}
-          <div>
+          <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-y-10 gap-x-20 pt-10'>
             {
-              data?.data?.pokemons?.results?.map(poke => <PokemonCard poke={poke} ></PokemonCard>)
+              data?.data?.pokemons?.results?.map((poke,idx) => <PokemonCard key={idx} poke={poke} ></PokemonCard>)
             }
           </div>
         </div>
