@@ -3,22 +3,29 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Logo from '@/Components/Logo'
-import { useRouter } from 'next/router'
+import {  useRouter } from 'next/router'
+import { Router } from 'next/router'
+
+import PokemonDetailsWithName from './pokemonDetailsWithName'
 
 
-import { ApolloProvider } from '@apollo/client';
-import ApolloClient from '@apollo/client';
 
-import { AppProps } from 'next/app'
+
 import PokemonCard from '@/Components/PokemonCard'
+import NewsPaper from '@/Components/NewsPaper'
 // import bgImageDesign from './Media-Asset/Background.png'
 
+
 const inter = Inter({ subsets: ['latin'] })
+
+
+
 
 export default function Home({data}) {
   // console.log(data.data.pokemons?.results);
 
   const router = useRouter()
+
 
 
 
@@ -31,9 +38,9 @@ export default function Home({data}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* background shape */}
-      <div className='pb-32' style={{ backgroundImage: `url(/Media-Asset/Background.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+      <div className='pb-32 px-24' style={{ backgroundImage: `url(/Media-Asset/Background.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
         {/* background texture  */}
-        <div className='h-screen px-24' style={{ backgroundImage: `url(/Media-Asset/Texture.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+        <div className='h-screen  pb-32' style={{ backgroundImage: `url(/Media-Asset/Texture.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
           {/* logo  */}
           <Logo></Logo>
 
@@ -45,6 +52,12 @@ export default function Home({data}) {
           </div>
         </div>
       </div>
+
+      {/* newspaper  */}
+      <div>
+          <NewsPaper></NewsPaper>
+      </div>
+
     </>
   )
 }
