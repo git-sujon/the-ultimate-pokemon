@@ -16,7 +16,7 @@ import PokemonCard from '@/Components/PokemonCard'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({data}) {
-  console.log(data.data.pokemons?.results);
+  // console.log(data.data.pokemons?.results);
 
   const router = useRouter()
 
@@ -51,8 +51,7 @@ export default function Home({data}) {
 
 
 
-
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   const gqlQuery = `query pokemons($limit: Int, $offset: Int) {
     pokemons(limit: $limit, offset: $offset) {
       count
@@ -64,9 +63,7 @@ export async function getServerSideProps(context) {
         url
         name
         image
-        
       }
-      
     }
   }`;
 
@@ -74,7 +71,7 @@ export async function getServerSideProps(context) {
     limit: 10,
     offset: 0,
   };
-  
+
   const res = await fetch('https://graphql-pokeapi.graphcdn.app/', {
     credentials: 'omit',
     headers: { 'Content-Type': 'application/json' },
@@ -91,5 +88,5 @@ export async function getServerSideProps(context) {
     props: {
       data,
     },
-  }
+  };
 }

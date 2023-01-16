@@ -2,23 +2,18 @@ import Image from "next/image";
 
 const PokemonCard = ({ poke}) => {
 
-
-
-
-
-
-
-
-    
     
     const { url,
         name,
         image
     } = poke
+
+    
+
     return (
         <div className="">
             {/* card design  */}
-            <div className="bg-white hover:bg-blue-700  p-2 rounded-br-[65px] text-gray-700 hover:text-white">
+            <div className="bg-white hover:bg-blue-700  p-2 rounded-br-[55px] text-gray-700 hover:text-white">
                 <div className="bg-gray-200">
                     <div>
                         <img className="w-36 h-40 mx-auto" src={image} alt={name} />
