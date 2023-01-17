@@ -8,3 +8,7 @@
     clip-path: polygon(0 25%, 25% 0, 100% 0, 100% 100%, 0 100%);
     background: lightblue;
 }
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+}
