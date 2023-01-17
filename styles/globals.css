@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* bottom right corner */
+/* bottom left corner */
+.cut-corner-bottom-left {
+    clip-path: polygon(0 25%, 25% 0, 100% 0, 100% 100%, 0 100%);
+    background: lightblue;
+}
