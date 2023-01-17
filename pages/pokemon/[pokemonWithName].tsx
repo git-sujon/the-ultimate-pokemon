@@ -79,6 +79,12 @@ const PokemonWithName = (props) => {
                            </div>
                         </div>
                     </div>
+                    {/* part 2 */}
+                    <div>
+                        <img className='' src={pokemonImage} alt={`${pokemonName} Image` } />
+                    </div>
+                    {/* part 3 */}
+                  
                 </div>
 
             </div>
