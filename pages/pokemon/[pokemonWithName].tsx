@@ -1,10 +1,11 @@
 import Logo from '@/Components/Logo';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 const PokemonWithName = (props) => {
 
     const { pokemon } = props;
-    
+
 
     const pokemonID = ('000' + (pokemon.id)).slice(-3)
     const pokemonName = pokemon.name[0] + pokemon.name.slice(1)
@@ -38,33 +39,37 @@ const PokemonWithName = (props) => {
             </p>
         ))
     )
-   
+
 
     const pokemonStats = () => (
         pokemon.stats.map((stat, index) => (
-           <>
-           <p key={index} className='text-xs capitalize font-semibold'>{stat.stat.name}</p>
-            <div  className="bg-gray-200 my-1  rounded-full">
-                <div className="rounded-full bg-blue-400  px-2" style={{ width: `${stat.base_stat}%` }}>
-                   <p className='text-[2px] text-blue-400'>  {stat.base_stat}</p>
+            <>
+                <p key={index} className='text-xs capitalize font-semibold'>{stat.stat.name}</p>
+                <div className="bg-gray-200 my-1  rounded-full">
+                    <div className="rounded-full bg-blue-400  px-2" style={{ width: `${stat.base_stat}%` }}>
+                        <p className='text-[2px] text-blue-400'>  {stat.base_stat}</p>
+                    </div>
                 </div>
-            </div>
-           </>
+            </>
         ))
     )
 
-    const pokemonWeakness= ['fire', 'ice', 'water', 'rock']
+    const pokemonWeakness = ['fire', 'ice', 'water', 'rock']
 
- 
+    const router = useRouter();
+    const handleBackToHome = () => {
+        router.push("/")
+    }
+
 
     return (
         <div>
-            <div className='h-screen  pb-32' style={{ backgroundImage: `url(/Media-Asset/Texture.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+            <div className='h-screen  ' style={{ backgroundImage: `url(/Media-Asset/Texture.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
                 {/* logo  */}
                 <Logo></Logo>
 
                 {/* contents  */}
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-10 md:px-24  pb-32'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-10 md:px-24  '>
                     {/* part 1 */}
                     <div className='flex flex-col gap-y-10'>
                         <p className='text-4xl font-bold text-blue-600 text-center md:text-left capitalize'>{pokemonName} {pokemonID}</p>
@@ -110,33 +115,33 @@ const PokemonWithName = (props) => {
                         <div>
                             <p className='text-md font-semibold'>Type</p>
                             <div className='mt-2 '>
-                             {
-                                pokemon.types.map(type => (
-                                    <span key={type.slot} className={` rounded-sm  px-2 py-1 ${pokemonTypeColor[type?.type?.name]} capitalize text-white text-sm font-semibold mr-2`}>
-                                        {type.type.name}
-                                    </span>
-                                ))
-                             }
+                                {
+                                    pokemon.types.map(type => (
+                                        <span key={type.slot} className={` rounded-sm  px-2 py-1 ${pokemonTypeColor[type?.type?.name]} capitalize text-white text-sm font-semibold mr-2`}>
+                                            {type.type.name}
+                                        </span>
+                                    ))
+                                }
                             </div>
                         </div>
 
                         {/* weakness  */}
 
                         <div>
-                        <p className='text-md font-semibold'>Weakness</p>
-                        <div>
-                            {
-                                pokemonWeakness?.map((weakness,idx) => <span key={idx} className={`rounded-sm  px-2 py-1 ${pokemonTypeColor[weakness]} capitalize text-white text-sm font-semibold mr-2`} >
-                                {weakness}
-                            </span>)
-                            }
-                        </div>
+                            <p className='text-md font-semibold'>Weakness</p>
+                            <div>
+                                {
+                                    pokemonWeakness?.map((weakness, idx) => <span key={idx} className={`rounded-sm  px-2 py-1 ${pokemonTypeColor[weakness]} capitalize text-white text-sm font-semibold mr-2`} >
+                                        {weakness}
+                                    </span>)
+                                }
+                            </div>
                         </div>
                         {/* Stats  */}
 
                         <div>
-                        <p className='text-md font-semibold'>Stats</p>
-                        {/* stats  */}
+                            <p className='text-md font-semibold'>Stats</p>
+                            {/* stats  */}
                             <div className='mt-3'>
                                 {pokemonStats()}
                             </div>
@@ -144,8 +149,8 @@ const PokemonWithName = (props) => {
                     </div>
                 </div>
                 {/* bacck to the home button  */}
-                <div>
-                    <button></button>
+                <div className='py-10'>
+                    <button onClick={handleBackToHome} className="py-1 px-4 mb-0 text-white bg-yellow-500  mx-auto font-semibold flex items-center gap-x-1 hover:bg-yellow-700"> <img className='mb-1' src="/Media-Asset/home-icon.png" alt="" /> Back to Home</button>
                 </div>
             </div>
 
