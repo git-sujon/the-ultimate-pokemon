@@ -20,7 +20,6 @@ import NewsPaper from '@/Components/NewsPaper'
 
 
 
-
 export default function Home({ data }) {
 
 

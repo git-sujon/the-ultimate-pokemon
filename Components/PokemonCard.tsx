@@ -1,7 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const PokemonCard = ({ poke, idx}) => {
+interface PokeType {
+    name: string;
+    url: string;
+    image: string;
+   
+    // any other properties your poke object has
+  }
+
+const PokemonCard =  ({ poke, idx }: {poke: PokeType, idx: number}) => {
 const pokemonID= ('000' + (idx+1)).slice(-3)
     
     const { url,
