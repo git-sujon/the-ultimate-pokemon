@@ -41,14 +41,14 @@ export default function Home({ data }) {
 
       </Head>
       {/* background shape */}
-      <div className='pb-32 px-24' style={{ backgroundImage: `url(/Media-Asset/Background.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+      <div className='pb-32 px-10 md:px-24' style={{ backgroundImage: `url(/Media-Asset/Background.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
         {/* background texture  */}
-        <div className='h-screen  pb-32' style={{ backgroundImage: `url(/Media-Asset/Texture.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
+        <div className='' style={{ backgroundImage: `url(/Media-Asset/Texture.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }} >
           {/* logo  */}
           <Logo></Logo>
 
           {/* contents  */}
-          <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-y-10 gap-x-20 pt-10'>
+          <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-y-10 gap-x-20 pt-10 '>
             {
               data?.data?.pokemons?.results?.map((poke, idx) => <PokemonCard key={idx} poke={poke} idx={idx} ></PokemonCard>)
             }
@@ -57,7 +57,7 @@ export default function Home({ data }) {
       </div>
 
       {/* newspaper  */}
-      <div>
+      <div className='px-10 md:px-24'>
         <NewsPaper></NewsPaper>
       </div>
 
