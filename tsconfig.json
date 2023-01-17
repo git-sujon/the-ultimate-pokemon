@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/pokemon/[pokemonWithName].js", "pages/index.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/pokemon/[pokemonWithName].tsx", "pages/index.tsx"],
   "exclude": ["node_modules"]
 }
